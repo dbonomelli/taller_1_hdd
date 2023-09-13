@@ -20,11 +20,11 @@ public class ClienteServiceimpl implements ClienteService{
 
     @Override
     public List<Cliente> mostrarClientes() {
-        return null;
+        return clienteRepository.findAll();
     }
 
     @Override
-    public List<Cliente> mostrarClientes(String estado) {
-        return null;
+    public List<Cliente> mostrarClientesFiltro(String estado) {
+        return clienteRepository.findByEstado(estado);
     }
 }

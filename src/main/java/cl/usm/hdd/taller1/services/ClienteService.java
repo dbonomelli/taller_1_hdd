@@ -7,5 +7,5 @@ import java.util.List;
 public interface ClienteService {
     Cliente ingresarCliente(Cliente cliente);
     List<Cliente> mostrarClientes();
-    List<Cliente> mostrarClientes(String estado);
+    List<Cliente> mostrarClientesFiltro(String estado);
 }
