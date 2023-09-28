@@ -1,5 +1,9 @@
 package cl.usm.hdd.taller1.utils;
 
+import cl.usm.hdd.taller1.entities.Cliente;
+
+import java.util.stream.Stream;
+
 public class ClienteUtils {
     public static boolean validarRut(String rut) {
 
@@ -26,7 +30,12 @@ public class ClienteUtils {
         return validacion;
     }
 
-    public static boolean validarTipo(String tipo){
-        return false;
+    public static boolean validarEstado(String estado){
+        String estados [] = {"Habilitado", "Con Deuda", "En lista negra"};
+        return Stream.of(estados).anyMatch(s -> s.equalsIgnoreCase(estado));
+    }
+
+    public static boolean seeNull(Cliente cliente){
+        return !(cliente.getNombre() == null || cliente.getApellidos() == null || cliente.getNombre().equalsIgnoreCase("") || cliente.getApellidos().equalsIgnoreCase(""));
     }
 }

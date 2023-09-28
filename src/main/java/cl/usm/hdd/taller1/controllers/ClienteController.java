@@ -18,6 +18,12 @@ public class ClienteController {
         if(!ClienteUtils.validarRut(cliente.getRut())){
             return ResponseEntity.badRequest().build();
         }
+        if(!ClienteUtils.validarEstado(cliente.getEstado())){
+            return ResponseEntity.badRequest().build();
+        }
+        if(!ClienteUtils.seeNull(cliente)){
+            return ResponseEntity.badRequest().build();
+        }
         try {
             Cliente nuevoCliente = clienteService.ingresarCliente(cliente);
             return ResponseEntity.ok(nuevoCliente);
@@ -36,6 +42,9 @@ public class ClienteController {
 
     @GetMapping("/mostrarClientes/{estado}")
     public ResponseEntity<List<Cliente>> mostrarClientesFiltro(@PathVariable String estado){
+        if(!ClienteUtils.validarEstado(estado)){
+            return ResponseEntity.badRequest().build();
+        }
         try{
             return ResponseEntity.ok(clienteService.mostrarClientesFiltro(estado));
         }catch (Exception ex){
